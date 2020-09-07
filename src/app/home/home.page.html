@@ -1,0 +1,19 @@
+<ion-header class="ion-no-border"  color="primary">
+  <ion-toolbar id="titulo" color="primary">
+    <ion-title >
+      Filmes Star Wars 
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content id="idcontener" >
+  
+  <ion-list  id="menu" > 
+    <div id="menu">
+      <ion-item id="menu" *ngFor="let c of componentes" detail [routerLink] = "c.link" >
+        <ion-label id="menu">{{c.nome}}</ion-label>
+      </ion-item>
+    </div>
+
+  </ion-list>
+
+</ion-content>

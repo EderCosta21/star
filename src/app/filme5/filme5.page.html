@@ -1,0 +1,61 @@
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-buttons slot ="start">
+          <ion-back-button defaultHref="/" text="Voltar"></ion-back-button>
+        </ion-buttons>
+        <ion-title>The Empire Strikes Back</ion-title>
+      </ion-toolbar>
+    </ion-header>
+                
+<ion-content>
+                  <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>Description </ion-card-title>
+                  </ion-card-header>
+                
+                  <ion-card-content>
+                    It is a dark time for the Rebellion. Although the Death Star was destroyed, Imperial troops
+                    expelled Renebel forces from their hidden base and pursued through the galaxy. Eventoring the dreaded Fleet
+                    Estelar Imperial, a group of freedom fighters led by Luke Skywalker has established a new secret
+                    based in the remote ice world of Hoth. The evil lord Darth Vader, uncomfortable with the discovery of young people
+                    Skywalker, dispatched thousands of remote probes to the ends of space .... ",
+                    
+                  </ion-card-content>
+                
+                </ion-card>
+                  <ion-list>
+                    <ion-item *ngFor="let c of descricao" >
+                      <ion-label>Director: {{c.diretor}}</ion-label>
+                    </ion-item>
+                    </ion-list>
+                    <ion-list>
+                      <ion-item *ngFor="let c of descricao" >        
+                        <ion-label>Producer: {{c.produtor}}</ion-label>
+                      </ion-item> 
+                    </ion-list>
+                
+                      <ion-list>
+                        <ion-item *ngFor="let c of descricao" >
+                          <ion-label>Release Date: {{c.releaseDate}}</ion-label>
+                        </ion-item>
+                      </ion-list>
+                
+                          <ion-list>
+                          <ion-item *ngFor="let c of descricao" >
+                          <ion-label>Episode: {{c.episode}}</ion-label>
+                          </ion-item> 
+                          </ion-list>
+                
+                
+                
+                          <section>
+                            <ion-button id="b0" expand="block" routerLink="/pessoas">Person</ion-button>
+                            <ion-button id="b1" expand="block" routerLink="/veiculos">Vehicle</ion-button>
+                            <ion-button id="b2" expand="block" routerLink="/planeta">Planet</ion-button>
+                            <ion-button id="b3" expand="block" routerLink="/naves">starship</ion-button>
+                            <ion-button id="b4" expand="block" routerLink="/especies">Species</ion-button>
+                          </section>
+                
+</ion-content>
+
+              

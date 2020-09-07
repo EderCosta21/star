@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot ="start">
+      <ion-back-button defaultHref="/" text="Voltar"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Vehicle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-list>
+      <ion-item *ngFor="let c of component">
+        <ion-label>Name:{{c.nome}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of component">
+        <ion-label>Model:{{c.modelo}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of component">
+        <ion-label>Manufacturer:{{c.fabricante}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of component">
+        <ion-label>Length:{{c.comprimento}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of component">
+        <ion-label>Maximum speed:{{c.Velocidade}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of component">
+        <ion-label>Crew:{{c.Tripulacao}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of component">
+        <ion-label>Passengers:{{c.passageiros}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of component">
+        <ion-label>Battery capacity:{{c.cargaCapacidade}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of component">
+        <ion-label>Consumables:{{c.consumiveis}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of component">
+        <ion-label>Vehicle Class:{{c.classe}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of component">
+        <ion-label>Pilots:{{c.pilotos}} </ion-label>
+      </ion-item>
+
+
+  </ion-list>
+</ion-content>

@@ -1,0 +1,8 @@
+{
+  "name": "star",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

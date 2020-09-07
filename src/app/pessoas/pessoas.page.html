@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot ="start">
+      <ion-back-button defaultHref="/" text="Voltar"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Person</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="menu"  >
+  <ion-list class="menu">
+      <ion-item class="menu" *ngFor="let c of pessoa1">
+        <ion-label class="menu">Nome:{{c.nome}} </ion-label>
+      </ion-item>
+      
+      <ion-item *ngFor="let c of pessoa1">
+        <ion-label>Height:{{c.altura}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of pessoa1">
+        <ion-label>Pasta:{{c.massa}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of pessoa1">
+        <ion-label>Hear Color:{{c.hearColor}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of pessoa1">
+        <ion-label>Skin Color:{{c.skinColor}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of pessoa1">
+        <ion-label>Eye Color:{{c.eyeColor}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of pessoa1">
+        <ion-label>Birth Year:{{c.birthYear}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of pessoa1">
+        <ion-label>Genre:{{c.genero}} </ion-label>
+      </ion-item>
+  </ion-list>
+</ion-content>
+
+<!-- Footer without a border
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="Voltar"></ion-back-button>
+
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button houterLink="/home"> Proximo </ion-button>
+    </ion-buttons>
+    </ion-toolbar>
+  </ion-footer> -->

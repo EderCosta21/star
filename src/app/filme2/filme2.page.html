@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot ="start">
+      <ion-back-button defaultHref="/" text="Voltar"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Attack of the Clones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+  <ion-card-header>
+    <ion-card-title >Description </ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    There is unrest in the Galactic Senate. Several thousand solar systems have declared their intentions to leave
+     the Republic. This separatist movement, under the leadership of the mysterious Count Dooku, made it difficult for the number
+     limited number of Jedi Knights to maintain peace and order in the galaxy. Senator Amidala, the former Queen of Naboo,
+     is returning to the Galactic Senate to vote on the critical issue of creating the ARMY OF THE REPUBLIC
+     to help the oppressed Jedi .. .. ",
+    
+  </ion-card-content> 
+
+</ion-card>
+  <ion-list >
+    <ion-item *ngFor="let c of descricao" >
+      <ion-label>Director: {{c.diretor}}</ion-label>
+    </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item *ngFor="let c of descricao" >        
+        <ion-label>Producer: {{c.produtor}}</ion-label>
+      </ion-item> 
+    </ion-list>
+
+      <ion-list>
+        <ion-item *ngFor="let c of descricao" >
+          <ion-label>Release Date: {{c.releaseDate}}</ion-label>
+        </ion-item>
+      </ion-list>
+
+          <ion-list>
+          <ion-item *ngFor="let c of descricao" >
+          <ion-label>Episode: {{c.episode}}</ion-label>
+          </ion-item> 
+          </ion-list>
+
+
+
+          <section>
+            <ion-button id="b0" expand="block" routerLink="/pessoas">Person</ion-button>
+            <ion-button id="b1" expand="block" routerLink="/veiculos">Vehicle</ion-button>
+            <ion-button id="b2" expand="block" routerLink="/planeta">Planet</ion-button>
+            <ion-button id="b3" expand="block" routerLink="/naves">starship</ion-button>
+            <ion-button id="b4" expand="block" routerLink="/especies">Species</ion-button>
+          </section>
+
+</ion-content>
+

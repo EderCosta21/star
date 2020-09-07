@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot ="start">
+      <ion-back-button defaultHref="/" text="Voltar"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Starship</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-list>
+      <ion-item *ngFor="let c of naves">
+        <ion-label>Name:{{c.nome}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of naves">
+        <ion-label>Model:{{c.modelo}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of naves">
+        <ion-label>Manufacturer:{{c.fabricante}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of naves">
+        <ion-label>Cost In Credits:{{c.costInCredits}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of naves">
+        <ion-label>Length:{{c.comprimento}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of naves">
+        <ion-label>Maximum speed:{{c.Velocidade}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of naves">
+        <ion-label>Crew:{{c.Tripulacao}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of naves">
+        <ion-label>Passenger:{{c.passageiro}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of naves">
+        <ion-label>Battery capacity:{{c.cargaCapacidade}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of naves">
+        <ion-label> Consumables:{{c.consumiveis}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of naves">
+        <ion-label> Hyper Drive Rating:{{c.hyperdriveRating}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of naves">
+        <ion-label>MGLT:{{c.MGLT}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of naves">
+        <ion-label> Class:{{c.classe}} </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let c of naves">
+        <ion-label> Pilot:{{c.piloto}} </ion-label>
+      </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,3 +1,4 @@
+
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -5,18 +6,19 @@ import { ActivatedRoute } from '@angular/router';
 import { StorageService } from '../storage/storage.service';
 import { ApiService } from '../api/apiService';
 import { Film } from '../_interfaces/Film';
-import { Species } from '../_interfaces/Species';
+import { Planet } from '../_interfaces/Planet';
+
 
 @Component({
   selector: 'app-film',
-  templateUrl: 'especies.page.html',
-  styleUrls: ['especies.page.scss'],
+  templateUrl: 'planetas.page.html',
+  styleUrls: ['planetas.page.scss'],
 })
-export class EspeciesPage implements OnDestroy {
+export class PlanetasPage implements OnDestroy {
 
   subscriptions = new Subscription();
   film: Film;
-  species: Species[];
+  planets: Planet[];
   loading = true;
 
   constructor(
@@ -37,10 +39,9 @@ export class EspeciesPage implements OnDestroy {
     this.film = await this.storage.getFilm(id);
 
     // Querying each nested film components array
-
-    this.species = await Promise.all(
-      this.film.species.map(url =>
-        this.api.get<Species>(url)));
+    this.planets = await Promise.all(
+      this.film.planets.map(url =>
+        this.api.get<Planet>(url)));
   }
 
   ngOnDestroy() {

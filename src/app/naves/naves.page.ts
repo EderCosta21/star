@@ -1,53 +1,52 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { StorageService } from '../storage/storage.service';
+import { ApiService } from '../api/apiService';
+import { Film } from '../_interfaces/Film';
+import { Starship } from '../_interfaces/Starship';
 
 @Component({
-  selector: 'app-naves',
-  templateUrl: './naves.page.html',
-  styleUrls: ['./naves.page.scss'],
+  selector: 'app-film',
+  templateUrl: 'naves.page.html',
+  styleUrls: ['naves.page.scss'],
 })
-export class NavesPage implements OnInit {
-  public naves: Naves[] = [
+export class NavesPage implements OnDestroy {
 
-    {
-    nome: 'Estrela da Morte',
-    modelo: 'DS-1 Orbital Battle Station',
-    fabricante: 'Departamento Imperial de Pesquisa Militar, Sistemas de Frota Sienar',
-    costInCredits: '1000000000000',
-    comprimento: '120000',
-    Velocidade: 'N/A',
-    Tripulacao: '342.953',
-    passageiro: '843.342',
-    cargaCapacidade: '1000000000000',
-    consumiveis: '3 anos',
-    hyperdriveRating: '4.0',
-    MGLT: '10',
-    classe: 'Deep Space Mobile Battlestation',
-    piloto: 'N/A',
-    }
-  ];
+  subscriptions = new Subscription();
+  film: Film;
+  starships: Starship[];
+  loading = true;
 
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor(
+    private storage: StorageService,
+    private api: ApiService,
+    private route: ActivatedRoute,
+  ) {
+    // Getting the url :id parameter
+    this.subscriptions.add(
+      this.route.params
+        .pipe(map(p => p.id))
+        .subscribe(id => this.setUpPage(parseInt(id, 10)))
+    );
   }
 
+  async setUpPage(id: number) {
+    // Retrieving from storage the film from the id
+    this.film = await this.storage.getFilm(id);
+
+    // Querying each nested film components array
+
+    this.starships = await Promise.all(
+      this.film.starships.map(url =>
+        this.api.get<Starship>(url)));
+
+  }
+
+  ngOnDestroy() {
+    // Making sure to destroy the rxjs subscriptions
+    // when leaving
+    this.subscriptions.unsubscribe();
+  }
 }
-interface Naves{
-
-
-  nome: string[100];
-   modelo: string;
-   fabricante: string;
-   costInCredits: string;
-   comprimento: string;
-   Velocidade: string;
-   Tripulacao: string;
-   passageiro: string;
-   cargaCapacidade: string;
-   consumiveis: string;
-   hyperdriveRating: string;
-   MGLT: string;
-   classe: string;
-   piloto: string;
-   }

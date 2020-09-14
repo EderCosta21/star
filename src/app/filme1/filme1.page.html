@@ -1,61 +1,54 @@
-<ion-header >
-  <ion-toolbar color="primary" >
-    <ion-buttons >
-      <ion-back-button defaultHref="/" text="Voltar"></ion-back-button>
+<ion-header color="primary">
+  <ion-toolbar id="titulo">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title id='titulo'>The Phantom Menace</ion-title>
+    <ion-title *ngIf="film" >
+       {{ film.title }}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
-  
 
-<ion-card id="descricao">
-  <ion-card-header>
-    <ion-card-title>Description </ion-card-title>
-  </ion-card-header>
+<ion-content fullscreen *ngIf="film">
+  <ion-card>
+   <ion-card-header>
+      <ion-card-title  id="menu">Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="ion-padding-top">{{ film.opening_crawl }}</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-list >
 
-  <ion-card-content>
-    The turmoil engulfed the Galactic Republic. Taxation
-     commercial routes to the star systems are still in dispute. I hope to resolve the matter
-     with a deadly fighting blockade, the greedy Trade Federation stopped all shipments to
-     the little planet on Naboo. While the Congress of the Republic indefinitely debates in this
-     alarming chain of events, the Supreme Chancellor secretly dispatched two Jedi Knights,
-     the guardians of peace and justice in the galaxy, to resolve the conflict. ... ",
-  </ion-card-content> 
-</ion-card>
-
-
-<ion-list >
-  <ion-item  *ngFor="let c of descricao" >
-    <ion-label id="cor" >Director: {{c.diretor}}</ion-label>
-  </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-item *ngFor="let c of descricao" >        
-      <ion-label id="cor">Producer: {{c.produtor}}</ion-label>
-    </ion-item> 
-  </ion-list>
-
-    <ion-list>
-      <ion-item *ngFor="let c of descricao" >
-        <ion-label id="cor" >Release Date: {{c.releaseDate}}</ion-label>
-      </ion-item>
+    <ion-item  *ngIf="film" >
+      <ion-label id="cor" >Director: {{film.director}}</ion-label>
+    </ion-item>
     </ion-list>
-
-        <ion-list>
-        <ion-item *ngFor="let c of descricao" >
-        <ion-label id="cor">Episode: {{c.episode}}</ion-label>
-        </ion-item> 
-        </ion-list>
-
-
-<section>
-  <ion-button id="b0" expand="block" routerLink="/pessoas">Person</ion-button>
-  <ion-button id="b1" expand="block" routerLink="/veiculos">Vehicle</ion-button>
-  <ion-button id="b2" expand="block" routerLink="/planeta">Planet</ion-button>
-  <ion-button id="b3" expand="block" routerLink="/naves">starship</ion-button>
-  <ion-button id="b4" expand="block" routerLink="/especies">Species</ion-button>
+    <ion-list>
+      <ion-item *ngIf="film" >        
+        <ion-label id="cor">Producer: {{film.producer}}</ion-label>
+      </ion-item> 
+    </ion-list>
+  
+      <ion-list>
+        <ion-item *ngIf="film" >
+          <ion-label id="cor" >Release Date: {{film.created}}</ion-label>
+        </ion-item>
+      </ion-list>
+  
+          <ion-list>
+          <ion-item *ngIf="film" >
+          <ion-label id="cor">Episode: {{film.episode_id}}</ion-label>
+          </ion-item> 
+          </ion-list> 
+         
+ <section>
+       <ion-button  expand="block" [routerLink]="['/pessoa/' + film.episode_id]+'/'">Characters</ion-button>
+       <ion-button  expand="block" [routerLink]="['/veiculos/'+ film.episode_id]+'/'">Vehicles</ion-button>
+       <ion-button  expand="block" [routerLink]="['/planetas/'+ film.episode_id]+'/'">Planets</ion-button>
+       <ion-button  expand="block" [routerLink]="['/naves/'+ film.episode_id]+'/'">Starships</ion-button>
+       <ion-button  expand="block" [routerLink]="['/especie/'+ film.episode_id]+'/'">Species</ion-button>
 </section>
 
 </ion-content>

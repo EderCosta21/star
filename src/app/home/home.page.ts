@@ -1,57 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
+import { Film, getDate } from '../_interfaces/Film';
+import { StorageService } from '../storage/storage.service';
+import { ApiService } from '../api/apiService';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnDestroy {
 
-  // tslint:disable-next-line: variable-name
-  private _componentes: Componentes[] = [
-    {
-      nome: 'The Phantom Menace',
-      link: '/filme1'
-    },
+  subscriptions = new Subscription();
+  films: Array<Film>;
 
-    {
-      nome: 'Attack of the Clones',
-      link: '/filme2'
-    },
-    {
-      nome: 'Revenge of the Sith',
-      link: '/filme3'
-    },
-    {
-      nome: 'A New Hope ',
-      link: '/filme4'
-    },
-    {
-      nome: 'The Empire Strikes Back',
-      link: '/filme5'
-    },
-
-    {
-      nome: 'Return of the Jedi',
-      link: '/filme6'
-    },
-     ];
-  public get componentes(): Componentes[] {
-    return this._componentes;
-  }
-  public set componentes(value: Componentes[]) {
-    this._componentes = value;
+  constructor(
+    private storage: StorageService,
+    private api: ApiService,
+  ) {
+    this.setUpHomePage();
   }
 
-  constructor() {}
+  async setUpHomePage() {
+    // Adding the rx sub to query storage first
+    this.subscriptions.add(
+      this.storage.getFilmsObservable()
+      .subscribe(films => this.films = films)
+    );
 
+    // Refresh the storage from the api
+    try {
+      await this.api.fetchFilms();
+    } catch (e) {}
+  }
+
+  ngOnDestroy() {
+    // Making sure to destroy the rxjs subscriptions
+    // when leaving
+    this.subscriptions.unsubscribe();
+  }
 }
-
-interface Componentes{
-
-  // tslint:disable-next-line: ban-types
-   nome: String;
-  // tslint:disable-next-line: ban-types
-   link: String;
-  }

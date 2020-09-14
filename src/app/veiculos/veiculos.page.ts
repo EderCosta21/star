@@ -1,47 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { StorageService } from '../storage/storage.service';
+import { ApiService } from '../api/apiService';
+import { Film } from '../_interfaces/Film';
+import { Vehicle } from '../_interfaces/Vehicle';
+
 
 @Component({
-  selector: 'app-veiculos',
-  templateUrl: './veiculos.page.html',
-  styleUrls: ['./veiculos.page.scss'],
+  selector: 'app-film',
+  templateUrl: 'veiculos.page.html',
+  styleUrls: ['veiculos.page.scss'],
 })
+export class VeiculosPage implements OnDestroy {
 
-export class VeiculosPage implements OnInit {
-  public component: Carros[] = [
+  subscriptions = new Subscription();
+  film: Film;
+  vehicles: Vehicle[];
 
-    {
-    nome: 'Vulture Droid',
-    modelo: 'Caça estelar dróide classe abutre',
-    fabricante: 'Haor Chall Engineering, Baktoid Armor Workshop',
-    comprimento: '3,5',
-    Velocidade: '1200',
-    Tripulacao: '0',
-    passageiros: '0',
-    cargaCapacidade: '0',
-    consumiveis: 'nenhum',
-    classe: 'starfighter',
-    pilotos: 'N/A',
-    }
-  ];
-  constructor() { }
+  loading = true;
 
-  ngOnInit() {
+  constructor(
+    private storage: StorageService,
+    private api: ApiService,
+    private route: ActivatedRoute,
+  ) {
+    // Getting the url :id parameter
+    this.subscriptions.add(
+      this.route.params
+        .pipe(map(p => p.id))
+        .subscribe(id => this.setUpPage(parseInt(id, 10)))
+    );
   }
 
+  async setUpPage(id: number) {
+    // Retrieving from storage the film from the id
+    this.film = await this.storage.getFilm(id);
+
+    // Querying each nested film components array
+    this.vehicles = await Promise.all(
+      this.film.vehicles.map(url =>
+        this.api.get<Vehicle>(url)));
+
+  }
+
+  ngOnDestroy() {
+    // Making sure to destroy the rxjs subscriptions
+    // when leaving
+    this.subscriptions.unsubscribe();
+  }
 }
-
-interface Carros{
-
-
-   nome: string[100];
-   modelo: string;
-   fabricante: string;
-   comprimento: string;
-   Velocidade: string;
-   Tripulacao: string;
-   passageiros: string;
-   cargaCapacidade: string;
-   consumiveis: string;
-   pilotos: string;
-   classe: string;
-  }

@@ -4,13 +4,13 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="film">
+    <ion-title  id="menu" *ngIf="film">
        {{ film.title }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen *ngIf="film">
+<ion-content  fullscreen *ngIf="film">
   <ion-card>
     <ion-card-header>
       <ion-card-title id="menu">Starships</ion-card-title>

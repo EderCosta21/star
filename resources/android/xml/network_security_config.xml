@@ -5,8 +5,8 @@
             <domain-config cleartextTrafficPermitted="true">
            
             <domain includeSubdomains="true">swapi.dev/api</domain>
-            <domain includeSubdomains="true">swapi.dev/api/films/</domain>
-          <domain includeSubdomains="true">localhost</domain>
+           <domain includeSubdomains="true">swapi.dev/api/films/</domain>
+            <domain includeSubdomains="true">localhost</domain>
     </domain-config>
 </network-security-config>
 

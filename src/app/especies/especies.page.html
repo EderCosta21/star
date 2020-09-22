@@ -4,7 +4,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="film">
+    <ion-title *ngIf="film"  id="menu">
        {{ film.title }}
     </ion-title>
   </ion-toolbar>
@@ -13,7 +13,7 @@
 <ion-content fullscreen *ngIf="film">
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Species</ion-card-title>
+      <ion-card-title  id="menu">Species</ion-card-title>
      </ion-card-header>
      <ion-card-content>
        <ul>
